@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PESEL_Database_Tests.Static
+namespace PESEL_Database_Tests.Statics
 {
     public static class ObservableCollectionExtensions
     {

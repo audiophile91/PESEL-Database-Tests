@@ -1,10 +1,8 @@
-﻿using PESEL_Database_Tests.Models;
-using PESEL_Database_Tests.Statics;
-using PESEL_Database_Tests.Statics.Generators;
-using PESEL_Database_Tests.ViewModels;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PESEL_Database_Tests
+namespace PESEL_Database_Tests.Views.Database
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for DatabaseListViewFilterView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ListViewFilterView : UserControl
     {
-        public MainWindow()
+        public ListViewFilterView()
         {
             InitializeComponent();
         }

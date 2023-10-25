@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="PESEL_Database_Tests.Views.Database.ListViewMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PESEL_Database_Tests.Views.Database"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="30"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Margin="5">
+            <WrapPanel>
+                <WrapPanel>
+                    <Button Content="Generate Database" Margin="0, 5, 5, 5"
+                            Command="{Binding GenerateDatabaseButton}"/>
+                    <Label Content="Data size" Margin="5"/>
+                    <TextBox Width="150" Margin="5" VerticalContentAlignment="Center"
+                             Text="{Binding ListViewViewModel.DatabaseDesiredSize, UpdateSourceTrigger=PropertyChanged}"/>
+                   
+                </WrapPanel>
+                <WrapPanel>
+                    <Button Content="{Binding SwitchLabel}" Margin="5" Padding="4 2"
+                            Command="{Binding FilterDisplayCommand}"/>
+                </WrapPanel>
+                
+            </WrapPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <local:ListViewFilterView DataContext="{Binding FilterViewModel}"
+                                      Visibility="{Binding Display, Converter={StaticResource BoolToVisibility}}"/>
+            
+            <local:ListViewView DataContext="{Binding ListViewViewModel}"
+                                Visibility="{Binding Display, Converter={StaticResource BoolToVisibility}}"/>
+        </Grid>
+    </Grid>
+</UserControl>

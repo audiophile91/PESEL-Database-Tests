@@ -5,17 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace PESEL_Database_Tests.Converter
+namespace PESEL_Database_Tests.Converters
 {
-    public class DateConverter : IValueConverter
+    public class SexConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is DateTime date)
+            if (value is bool isMale)
             {
-                return date.ToString("yyyy MM dd");
+                return isMale ? "M" : "F";
             }
             return DependencyProperty.UnsetValue;
         }
