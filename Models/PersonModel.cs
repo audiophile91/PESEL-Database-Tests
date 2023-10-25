@@ -28,6 +28,7 @@ namespace PESEL_Database_Tests.Models
 
         public bool IsMale => PESEL.IsMale;
         public string BirthDate => PESEL.BirthDate.ToString("yyyy-MM-dd");
+        public DateTime BirthExactDate => PESEL.BirthDate;
         public string Pesel => PESEL.Display;
         public byte Age => PersonGenerator.GetPersonAge(PESEL.BirthDate);
     }

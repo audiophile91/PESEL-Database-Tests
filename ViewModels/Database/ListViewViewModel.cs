@@ -1,5 +1,4 @@
 ﻿using PESEL_Database_Tests.Commands;
-using PESEL_Database_Tests.Filters;
 using PESEL_Database_Tests.Models;
 using PESEL_Database_Tests.Statics;
 using PESEL_Database_Tests.Statics.Generators;
@@ -120,16 +119,13 @@ namespace PESEL_Database_Tests.ViewModels.Database
             }
         }
 
-        public bool IsGeneratingData { get; set; }
-
-        public bool CanGenerateData => DatabaseDesiredSize > 0 && Display && !IsGeneratingData;
+        public bool CanGenerateData => DatabaseDesiredSize > 0 && Records.Count == 0;
         public string DisplayProgressInfo => $"{DataGenerationProgress}/{DataGenerationProgressMaximum}";
 
         public async Task GenerateDatabase()
         {
             try
             {
-                IsGeneratingData = true;
                 DisplayDatabase = false;
                 DisplayProgress = true;
 
@@ -161,12 +157,10 @@ namespace PESEL_Database_Tests.ViewModels.Database
 
                 DisplayDatabase = true;
                 DisplayProgress = false;
-                IsGeneratingData = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                IsGeneratingData = false;
             }
         }
     }

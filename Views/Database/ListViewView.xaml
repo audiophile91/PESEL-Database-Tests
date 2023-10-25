@@ -23,10 +23,8 @@
             </Grid>
         </StackPanel>
         
-        
-
         <ListView ItemsSource="{Binding Records}" 
-                      Visibility="{Binding DisplayDatabase, Converter={StaticResource BoolToVisibility}}">
+                  Visibility="{Binding DisplayDatabase, Converter={StaticResource BoolToVisibility}}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="60" DisplayMemberBinding="{Binding ID}" />

@@ -40,7 +40,7 @@ namespace PESEL_Database_Tests.ViewModels.Database
         }
 
         public RelayCommand GenerateDatabaseButton => new RelayCommand(execute => ListViewViewModel.GenerateDatabase(), canExecute => ListViewViewModel.CanGenerateData);
-        public RelayCommand FilterDisplayCommand => new RelayCommand(execute => SwitchFilterView());
+        public RelayCommand FilterDisplayCommand => new RelayCommand(execute => SwitchFilterView(), canExecute => ListViewViewModel.Records.Count != 0);
 
         public void SwitchFilterView()
         {

@@ -17,9 +17,9 @@
         </Style>
         <Style TargetType="CheckBox">
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5, 0, 0, 0"/>
         </Style>
         <Style TargetType="ComboBox">
-            <Setter Property="SelectedIndex" Value="0"/>
             <Setter Property="Margin" Value="10 5"/>
         </Style>
         <Style TargetType="DatePicker">
@@ -65,11 +65,11 @@
                     </Grid.RowDefinitions>
 
                     <WrapPanel Grid.Row="0">
-                        <CheckBox />
+                        <CheckBox IsChecked="{Binding IsFilterIDActive}"/>
                         <Label  Content="ID"/>
                     </WrapPanel>
 
-                    <ComboBox Grid.Row="1">
+                    <ComboBox Grid.Row="1" SelectedIndex="{Binding FilterIDType}">
                         <ComboBoxItem Content="Equals"/>
                         <ComboBoxItem Content="Contains"/>
                         <ComboBoxItem Content="Starts With"/>
@@ -79,7 +79,7 @@
                         <ComboBoxItem Content="Lesser/Equal"/>
                         <ComboBoxItem Content="Lesser"/>
                     </ComboBox>
-                    <TextBox Grid.Row="2"/>
+                    <TextBox Grid.Row="2" Text="{Binding FilterIDValue}"/>
                 </Grid>
             </Border>
 
@@ -92,12 +92,12 @@
                     </Grid.RowDefinitions>
 
                     <WrapPanel Grid.Row="0">
-                        <CheckBox />
+                        <CheckBox IsChecked="{Binding IsFilterSexActive}"/>
                         <Label  Content="Sex"/>
                     </WrapPanel>
 
-                    <RadioButton Grid.Row="1" Content="M" GroupName="Sex"/>
-                    <RadioButton Grid.Row="2" Content="F" GroupName="Sex"/>
+                    <CheckBox Grid.Row="1" Content="Male" IsChecked="{Binding IsMaleSelected}"/>
+                    <CheckBox Grid.Row="2" Content="Female" IsChecked="{Binding IsFemaleSelected}"/>
                 </Grid>
             </Border>
 
@@ -110,17 +110,17 @@
                     </Grid.RowDefinitions>
 
                     <WrapPanel Grid.Row="0">
-                        <CheckBox />
-                        <Label  Content="Name"/>
+                        <CheckBox IsChecked="{Binding IsFilterNameActive}"/>
+                        <Label Content="Name"/>
                     </WrapPanel>
 
-                    <ComboBox Grid.Row="1">
+                    <ComboBox Grid.Row="1" SelectedIndex="{Binding FilterNameType}">
                         <ComboBoxItem Content="Equals"/>
                         <ComboBoxItem Content="Contains"/>
                         <ComboBoxItem Content="Starts With"/>
                         <ComboBoxItem Content="Ends With"/>
                     </ComboBox>
-                    <TextBox Grid.Row="2"/>
+                    <TextBox Grid.Row="2" Text="{Binding FilterNameValue}"/>
                 </Grid>
             </Border>
             <Border Grid.Row="0" Grid.Column="3">
@@ -132,7 +132,7 @@
                     </Grid.RowDefinitions>
 
                     <WrapPanel Grid.Row="0">
-                        <CheckBox />
+                        <CheckBox IsChecked="{Binding IsFilterLastnameActive}"/>
                         <Label  Content="Last Name"/>
                     </WrapPanel>
 
@@ -160,22 +160,22 @@
                     </Grid.ColumnDefinitions>
 
                     <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                        <CheckBox />
+                        <CheckBox IsChecked="{Binding IsFilterBirthDateActive}"/>
                         <Label  Content="Birth Date"/>
                     </WrapPanel>
 
-                    <RadioButton Grid.Row="1" Grid.Column="0" Content="Exact" GroupName="Birth"/>
+                    <CheckBox Grid.Row="1" Grid.Column="0" Content="Exact" IsChecked="{Binding IsBirthExactSelected}"/>
 
-                    <ComboBox Grid.Row="2" Grid.Column="0">
+                    <ComboBox Grid.Row="2" Grid.Column="0" SelectedIndex="{Binding FilterExactBirthDateType}">
                         <ComboBoxItem Content="Equals"/>
                         <ComboBoxItem Content="After"/>
                         <ComboBoxItem Content="Before"/>
                     </ComboBox>
-                    <DatePicker Grid.Row="3" Language="en-US"/>
+                    <DatePicker Grid.Row="3" Language="en-US" SelectedDate="{Binding SelectedBirthDate}"/>
 
-                    <RadioButton Grid.Row="1" Grid.Column="1" Content="Partial" GroupName="Birth"/>
+                    <CheckBox Grid.Row="1" Grid.Column="1" Content="Partial" IsChecked="{Binding IsBirthPartialSelected}"/>
 
-                    <ComboBox Grid.Row="2" Grid.Column="1">
+                    <ComboBox Grid.Row="2" Grid.Column="1" SelectedIndex="{Binding FilterPartialBirthDatePartType}">
                         <ComboBoxItem Content="Year"/>
                         <ComboBoxItem Content="Month"/>
                         <ComboBoxItem Content="Day"/>
@@ -186,14 +186,14 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        
-                        <ComboBox Grid.Column="0">
+
+                        <ComboBox Grid.Column="0" SelectedIndex="{Binding FilterPartialBirthDateType}">
                             <ComboBoxItem Content="Equals"/>
                             <ComboBoxItem Content="After"/>
                             <ComboBoxItem Content="Before"/>
                         </ComboBox>
 
-                        <TextBox Grid.Column="1" />
+                        <TextBox Grid.Column="1" Text="{Binding FilterBirthValue}"/>
                     </Grid>
                 </Grid>
             </Border>
@@ -207,18 +207,18 @@
                     </Grid.RowDefinitions>
 
                     <WrapPanel Grid.Row="0">
-                        <CheckBox />
+                        <CheckBox IsChecked="{Binding IsFilterAgeActive}"/>
                         <Label  Content="Age"/>
                     </WrapPanel>
 
-                    <ComboBox Grid.Row="1">
+                    <ComboBox Grid.Row="1" SelectedIndex="{Binding FilterAgeType}">
                         <ComboBoxItem Content="Equals"/>
                         <ComboBoxItem Content="Greater"/>
                         <ComboBoxItem Content="Greater/Equal"/>
                         <ComboBoxItem Content="Lesser/Equal"/>
                         <ComboBoxItem Content="Lesser"/>
                     </ComboBox>
-                    <TextBox Grid.Row="2"/>
+                    <TextBox Grid.Row="2" Text="{Binding FilterAgeValue}"/>
                 </Grid>
             </Border>
         </Grid>

@@ -86,6 +86,9 @@ namespace PESEL_Database_Tests.Statics.Generators
             "Wiesława",
             "Zofia", "Zuzanna"};
 
+        public static string[] GetNamesMaleToLower => namesMale.Select(x => x.ToLower()).ToArray();
+        public static string[] GetNamesFemaleToLower => namesFemale.Select(x => x.ToLower()).ToArray();
+
         public static bool PickSexIsMale()
         {
             return random.NextDouble() > 0.5;
