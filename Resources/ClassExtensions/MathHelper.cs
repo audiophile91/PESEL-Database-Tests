@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PESEL_Database_Tests.Statics
+namespace PESEL_Database_Tests.Resources.ClassExtensions
 {
     public static class MathHelper
     {

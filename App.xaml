@@ -5,6 +5,7 @@
     <Application.Resources>
         <converter:NameConverter x:Key="GetNameFormDatabase"/>
         <converter:SexConverter x:Key="BoolToSex"/>
+        <converter:InvertBoolean x:Key="InvertBool"/>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
     </Application.Resources>
 </Application>

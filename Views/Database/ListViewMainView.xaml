@@ -32,7 +32,10 @@
                     <Button Content="{Binding SwitchLabel}" Margin="5" Padding="4 2"
                             Command="{Binding FilterDisplayCommand}"/>
                 </WrapPanel>
-                
+
+                <Label Content="Results"/>
+                <Label Content="{Binding FilterViewModel.FiltredResult}"/>
+
             </WrapPanel>
         </Grid>
 

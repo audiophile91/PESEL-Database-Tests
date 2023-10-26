@@ -1,6 +1,6 @@
 ﻿using PESEL_Database_Tests.Commands;
 using PESEL_Database_Tests.Models;
-using PESEL_Database_Tests.Statics;
+using PESEL_Database_Tests.Resources.ClassExtensions;
 using PESEL_Database_Tests.Statics.Generators;
 using System;
 using System.Collections.Generic;
