@@ -17,11 +17,10 @@ namespace PESEL_Database_Tests.Statics.Generators
         private const int BIRTH_MONTH_MIN = 1;
         private const int BIRTH_MONTH_MAX = 12;
 
-        public static readonly DateTime Today = DateTime.Today;
         private static readonly int BirthYearMax = Today.Year;
-
+   
         private static readonly Random random = new();
-
+        
         private static readonly Dictionary<AgeRange, (int MinAge, int MaxAge)> ageRanges = new()
         {
             { AgeRange.Infant, (0, 2) },
@@ -38,29 +37,7 @@ namespace PESEL_Database_Tests.Statics.Generators
             {1, 31 }, {2, 28}, {3, 31}, {4, 30}, {5, 31}, {6, 30}, {7, 31}, {8, 31}, {9, 30}, {10, 31}, {11, 30}, {12, 31}
         };
 
-        public static readonly string[] namesMale = new string[] {
-            "Artur", "Andrzej",
-            "Bartosz", "Bartłomiej",
-            "Cezary",
-            "Daniel", "Denis", "Damian",
-            "Ernest",
-            "Filip", "Franciszek",
-            "Grzegorz",
-            "Henryk",
-            "Ireneusz",
-            "Jan",
-            "Kamil", "Kacper", "Karol",
-            "Lech",
-            "Marek", "Mariusz",
-            "Nikodem",
-            "Olaf",
-            "Patryk", "Piotr", "Paweł",
-            "Rafał", "Radosław",
-            "Stanisław", "Stefan", "Sławomir",
-            "Tomasz",
-            "Ulrich",
-            "Władysław",
-            "Zbigniew"};
+        public static readonly DateTime Today = DateTime.Today;
 
         public static readonly string[] namesFemale = new string[] {
             "Anna", "Agata", "Agnieszka", "Alicja", "Aneta",
@@ -85,21 +62,78 @@ namespace PESEL_Database_Tests.Statics.Generators
             "Urszula",
             "Wiesława",
             "Zofia", "Zuzanna"};
+        public static readonly string[] namesMale = new string[] {
+            "Artur", "Andrzej",
+            "Bartosz", "Bartłomiej",
+            "Cezary",
+            "Daniel", "Denis", "Damian",
+            "Ernest",
+            "Filip", "Franciszek",
+            "Grzegorz",
+            "Henryk",
+            "Ireneusz",
+            "Jan",
+            "Kamil", "Kacper", "Karol",
+            "Lech",
+            "Marek", "Mariusz",
+            "Nikodem",
+            "Olaf",
+            "Patryk", "Piotr", "Paweł",
+            "Rafał", "Radosław",
+            "Stanisław", "Stefan", "Sławomir",
+            "Tomasz",
+            "Ulrich",
+            "Władysław",
+            "Zbigniew"};
+        public static readonly string[] voivodeships = new string[]
+        {
+            "Dolnośląskie", "Kujawsko-pomorskie", "Lubelskie", "Lubuskie",
+            "Łódzkie", "Małopolskie", "Mazowieckie", "Opolskie",
+            "Podkarpackie", "Podlaskie", "Pomorskie", "Śląskie",
+            "Świętokrzyskie", "Warmińsko-mazurskie", "Wielkopolskie", "Zachodniopomorskie"
+        };
 
         public static string[] GetNamesMaleToLower => namesMale.Select(x => x.ToLower()).ToArray();
         public static string[] GetNamesFemaleToLower => namesFemale.Select(x => x.ToLower()).ToArray();
+        public static string[] GetVoivodeshipsToLower => voivodeships.Select(x => x.ToLower()).ToArray();
 
-        public static bool PickSexIsMale()
+        public static byte GetPersonAge(DateTime birthDate)
         {
-            return random.NextDouble() > 0.5;
-        }
-        public static short PickName(bool isMale)
-        {
-            var maxIndex = isMale ? namesMale.Length : namesFemale.Length;
+            var personAge = (byte)(Today.Year - birthDate.Year);
 
-            return (short)random.Next(0, maxIndex);
+            if (Today.Month > birthDate.Month || (Today.Month == birthDate.Month && Today.Day >= birthDate.Day))
+            {
+                return personAge;
+            }
+            else
+            {
+                return --personAge;
+            }
         }
-        public static DateTime PickDateBirth()
+
+        public static PersonModel GeneratePerson(int id, Dictionary<string, short> recordsDatesUsage)
+        {
+            var voivodeshipID = PickVoivodeship();
+            var dateBirth = PickDateBirth();
+            var isMale = PickSexIsMale();
+            var nameID = PickName(isMale);
+
+            var serializedPeselKey = PeselGenerator.GetSerializedPeselKey(dateBirth, isMale);
+            var sexBirthDateOccurences = GetRecordsDatesUsage(recordsDatesUsage, serializedPeselKey);
+
+            var pesel = PeselGenerator.AssignPesel(dateBirth, isMale, sexBirthDateOccurences);
+
+            PersonModel person = new PersonModel(id, voivodeshipID, nameID, 0, pesel);
+
+            return person;
+        }
+
+        private static byte PickVoivodeship()
+        {
+            return (byte)random.Next(0, voivodeships.Length);
+        }
+
+        private static DateTime PickDateBirth()
         {
             var year = PickYearOfBirth(PickAgeRange());
 
@@ -138,23 +172,19 @@ namespace PESEL_Database_Tests.Statics.Generators
             }
         }
 
-        public static PersonModel GeneratePerson(this int id, Dictionary<string, short> recordsDatesUsage)
+        private static bool PickSexIsMale()
         {
-            var dateBirth = PickDateBirth();
-            var isMale = PickSexIsMale();
-            var nameID = PickName(isMale);
-
-            var serializedPeselKey = PeselGenerator.GetSerializedPeselKey(dateBirth, isMale);
-            var sexBirthDateOccurences = GetRecordsDatesUsage(recordsDatesUsage, serializedPeselKey);
-
-            var pesel = PeselGenerator.AssignPesel(dateBirth, isMale, sexBirthDateOccurences);
-
-            PersonModel person = new PersonModel(id, nameID, 0, pesel);
-
-            return person;
+            return random.NextDouble() > 0.5;
         }
 
-        public static short GetRecordsDatesUsage(Dictionary<string, short> recordsDatesUsage, string key)
+        private static short PickName(bool isMale)
+        {
+            var maxIndex = isMale ? namesMale.Length : namesFemale.Length;
+
+            return (short)random.Next(0, maxIndex);
+        }
+
+        private static short GetRecordsDatesUsage(Dictionary<string, short> recordsDatesUsage, string key)
         {
             if (!recordsDatesUsage.ContainsKey(key))
             {
@@ -162,20 +192,6 @@ namespace PESEL_Database_Tests.Statics.Generators
             }
             return recordsDatesUsage[key]++;
         }
-        public static byte GetPersonAge(DateTime birthDate)
-        {
-            var personAge = (byte)(Today.Year - birthDate.Year);
-
-            if (Today.Month > birthDate.Month || (Today.Month == birthDate.Month && Today.Day >= birthDate.Day))
-            {
-                return personAge;
-            }
-            else
-            {
-                return --personAge;
-            }
-        }
-
         private enum AgeRange
         {
             Infant,

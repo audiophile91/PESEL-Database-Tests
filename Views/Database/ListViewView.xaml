@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PESEL_Database_Tests.Views.Database"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="5">
+    <Grid>
         <StackPanel Visibility="{Binding DisplayProgress, Converter={StaticResource BoolToVisibility}}"
                     VerticalAlignment="Center">
             
@@ -41,6 +41,7 @@
                     <GridViewColumn Header="PESEL" Width="90" DisplayMemberBinding="{Binding Pesel}" />
                     <GridViewColumn Header="Birth" Width="80" DisplayMemberBinding="{Binding BirthDate}" />
                     <GridViewColumn Header="Age" Width="40" DisplayMemberBinding="{Binding Age}" />
+                    <GridViewColumn Header="Voivodeship" Width="160" DisplayMemberBinding="{Binding VoivodeshipID, Converter={StaticResource GetVoivodeshipFromDatabase}}" />
                 </GridView>
             </ListView.View>
         </ListView>

@@ -45,7 +45,6 @@ namespace PESEL_Database_Tests.ViewModels.Database
         private double _dataGenerationProgressMaximum;
         private int _databaseDesiredSize;
 
-
         public bool Display
         {
             get
@@ -140,7 +139,7 @@ namespace PESEL_Database_Tests.ViewModels.Database
 
                     for (int i = 0; i < DatabaseDesiredSize; i++)
                     {
-                        batch.Add(i.GeneratePerson(_recordsDatesUsage));
+                        batch.Add(PersonGenerator.GeneratePerson(i, _recordsDatesUsage));
 
                         if (i % 1000 == 0)
                         {

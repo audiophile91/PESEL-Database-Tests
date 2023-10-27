@@ -1,4 +1,5 @@
-﻿using PESEL_Database_Tests.Resources.Filters;
+﻿using PESEL_Database_Tests.Models;
+using PESEL_Database_Tests.Resources.Filters;
 using PESEL_Database_Tests.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PESEL_Database_Tests.Models.Filters.Person
+namespace PESEL_Database_Tests.ViewModels.Filters.Person
 {
     public class BirthFilter : ViewModelBase
     {
@@ -57,7 +58,7 @@ namespace PESEL_Database_Tests.Models.Filters.Person
                 _ => 0
             };
         }
-       
+
         private DateTime GetPersonBirthDate(PersonModel person) => person.BirthExactDate;
     }
 }

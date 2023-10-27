@@ -1,16 +1,17 @@
-﻿using PESEL_Database_Tests.ViewModels;
+﻿using PESEL_Database_Tests.Models;
+using PESEL_Database_Tests.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PESEL_Database_Tests.Models.Filters.Person
+namespace PESEL_Database_Tests.ViewModels.Filters.Person
 {
     public class SexFilter : ViewModelBase
     {
         private bool _isSelectedMale;
-        
+
         public bool IsActive { get; set; }
         public bool IsSelectedMale
         {

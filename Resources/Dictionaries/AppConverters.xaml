@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:converter="clr-namespace:PESEL_Database_Tests.Converters">
+    <converter:NameConverter x:Key="GetNameFormDatabase"/>
+    <converter:VoivodeshipConverter x:Key="GetVoivodeshipFromDatabase"/>
+    <converter:SexConverter x:Key="BoolToSex"/>
+    <converter:InvertBoolean x:Key="InvertBool"/>
+    <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+</ResourceDictionary>

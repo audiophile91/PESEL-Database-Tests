@@ -1,4 +1,5 @@
-﻿using PESEL_Database_Tests.Resources.Filters;
+﻿using PESEL_Database_Tests.Models;
+using PESEL_Database_Tests.Resources.Filters;
 using PESEL_Database_Tests.Statics.Generators;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PESEL_Database_Tests.Models.Filters.Person
+namespace PESEL_Database_Tests.ViewModels.Filters.Person
 {
     public class NameFilter
     {

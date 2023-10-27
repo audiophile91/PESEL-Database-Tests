@@ -1,6 +1,6 @@
 ﻿using PESEL_Database_Tests.Models;
-using PESEL_Database_Tests.Models.Filters.Person;
 using PESEL_Database_Tests.Statics.Generators;
+using PESEL_Database_Tests.ViewModels.Filters.Person;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,6 +25,7 @@ namespace PESEL_Database_Tests.ViewModels.Database
             IDFilter = new();
             NameFilter = new();
             SexFilter = new();
+            VoivodeshipFilter = new();
         }
 
         private ObservableCollection<PersonModel> Records { get; }
@@ -38,6 +39,7 @@ namespace PESEL_Database_Tests.ViewModels.Database
         public IDFilter IDFilter { get; }
         public NameFilter NameFilter { get; }
         public SexFilter SexFilter { get; }
+        public VoivodeshipFilter VoivodeshipFilter { get; }
 
         public bool Display
         {
@@ -88,6 +90,11 @@ namespace PESEL_Database_Tests.ViewModels.Database
             if (SexFilter.CanFilter)
             {
                 ActiveFilters.Add(SexFilter.Filter);
+            }
+            if (VoivodeshipFilter.CanFilter)
+            {
+                VoivodeshipFilter.FilterVoivodeships();
+                ActiveFilters.Add(VoivodeshipFilter.Filter);
             }
         }
     }

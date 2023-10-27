@@ -13,14 +13,17 @@ namespace PESEL_Database_Tests.Models
 {
     public class PersonModel
     {
+        public byte VoivodeshipID { get; set; }
         public int ID { get; set; }
-        public short NameID { get; set; }
         public int LastnameID { get; set; }
-        private PeselModel PESEL { get; }
+        public short NameID { get; set; }
 
-        public PersonModel(int id, short nameID, int lastNameID, PeselModel pesel)
+        private PeselModel PESEL { get; }
+        
+        public PersonModel(int id, byte voivodeshiptID, short nameID, int lastNameID, PeselModel pesel)
         {
             ID = id;
+            VoivodeshipID = voivodeshiptID;
             NameID = nameID;
             LastnameID = lastNameID;
             PESEL = pesel;
