@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="PESEL_Database_Tests.Views.Generator.FilterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:PESEL_Database_Tests.Views.Generator"
+             xmlns:filters="clr-namespace:PESEL_Database_Tests.Views.Generator.Filters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000">
+    <Grid>
+        <ScrollViewer>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <filters:BirthFilterView Grid.Row="0"
+                    DataContext="{Binding BirthFilter}"/>
+
+                    <filters:VoivodeshipFilterView Grid.Row="1"
+                     DataContext="{Binding VoivodeshipFilter}"/>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <filters:NameFilterView Grid.Row="0"
+                    DataContext="{Binding NameFilter}"/>
+
+                    <filters:LastnameFilterView Grid.Row="1"
+                    DataContext="{Binding LastnameFIlter}"/>
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <filters:SexFilterView Grid.Row="0"
+                    DataContext="{Binding SexFilter}"/>
+
+                    <filters:AgeFilterView Grid.Row="1"
+                    DataContext="{Binding AgeFilter}"/>
+
+                    <filters:IDFilterView Grid.Row="2"
+                    DataContext="{Binding IDFilter}"/>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

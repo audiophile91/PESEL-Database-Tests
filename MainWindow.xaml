@@ -4,11 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:local="clr-namespace:PESEL_Database_Tests"
-        xmlns:databaseViews="clr-namespace:PESEL_Database_Tests.Views.Database"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         WindowState="Maximized">
     <Grid>
-        <databaseViews:ListViewMainView DataContext="{Binding ListViewMainViewModel}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <WrapPanel Grid.Row="0">
+            <Button Content="Postgres Conncetion" Command="{Binding SwitchViewConnectionCommand}"/>
+            <Button Content="Database Generation" Command="{Binding SwitchViewGeneratorCommand}"/>
+            <Button Content="Transfer Database" Command="{Binding SwitchViewTransferCommand}"/>
+        </WrapPanel>
+
+        <ContentControl Grid.Row="1" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>
